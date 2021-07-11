@@ -1,12 +1,11 @@
-import React from 'react';
-
+import AddPet from './components/Pets/AddPet';
 
 function App() {
-  return (
-    <div>
-
-    </div>
-  );
+   return (
+      <>
+         <AddPet />
+      </>
+   );
 }
 
 export default App;
