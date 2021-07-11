@@ -5,7 +5,7 @@ import Button from '../UI/Button';
 
 import css from './AddPet.module.css';
 
-const AddPet = ({ onAdd }) =>
+const AddPet = ({ onAdd, onError }) =>
 {
    const [name, setName] = useState('');
    const [age, setAge] = useState('');
@@ -15,10 +15,16 @@ const AddPet = ({ onAdd }) =>
       event.preventDefault();
 
       if ((name.trim().length === 0) || (age.trim().length === 0))
+      {
+         onError('Empty values not allowed');
          return;
+      }
 
       if (+age < 1)
+      {
+         onError('Age must be positive');
          return;
+      }
 
       setName('');
       setAge('');
