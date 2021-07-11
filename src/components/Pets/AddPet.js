@@ -1,4 +1,6 @@
 import Card from '../UI/Card';
+import Button from '../UI/Button';
+
 import css from './AddPet.module.css';
 
 const AddPet = () =>
@@ -12,12 +14,12 @@ const AddPet = () =>
       <Card className={ css.input }>
          <form onSubmit={ add }>
             <label htmlFor='name'>Name</label>
-            <input id='name'></input>
+            <input id='name' />
 
             <label htmlFor='age'>Age</label>
-            <input id='age' type='number'></input>
+            <input id='age' type='number' />
 
-            <button type='submit'>Add pet</button>
+            <Button type='submit'>Add pet</Button>
          </form>
       </Card>
    );
