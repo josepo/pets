@@ -5,7 +5,7 @@ import Button from '../UI/Button';
 
 import css from './AddPet.module.css';
 
-const AddPet = () =>
+const AddPet = ({ onAdd }) =>
 {
    const [name, setName] = useState('');
    const [age, setAge] = useState('');
@@ -22,6 +22,8 @@ const AddPet = () =>
 
       setName('');
       setAge('');
+
+      onAdd({ id: Math.random().toString(), name: name, age: age });
    }
 
    return (
