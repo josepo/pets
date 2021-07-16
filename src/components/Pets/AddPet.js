@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 
 import Card from '../UI/Card';
 import Button from '../UI/Button';
@@ -7,11 +7,14 @@ import css from './AddPet.module.css';
 
 const AddPet = ({ onAdd, onError }) =>
 {
-   const [name, setName] = useState('');
-   const [age, setAge] = useState('');
+   const nameRef = useRef();
+   const ageRef = useRef();
 
    const add = (event) =>
    {
+      const name = nameRef.current.value;
+      const age = ageRef.current.value;
+
       event.preventDefault();
 
       if ((name.trim().length === 0) || (age.trim().length === 0))
@@ -26,8 +29,8 @@ const AddPet = ({ onAdd, onError }) =>
          return;
       }
 
-      setName('');
-      setAge('');
+      nameRef.current.value = '';
+      ageRef.current.value = '';
 
       onAdd({ id: Math.random().toString(), name: name, age: age });
    }
@@ -36,10 +39,10 @@ const AddPet = ({ onAdd, onError }) =>
       <Card className={ css.input }>
          <form onSubmit={ add }>
             <label htmlFor='name'>Name</label>
-            <input id='name' value={ name } onChange={ e => { setName(e.target.value); }} />
+            <input id='name' ref={ nameRef } />
 
             <label htmlFor='age'>Age</label>
-            <input id='age' value={ age } onChange={ e => { setAge(e.target.value); }} type='number' />
+            <input id='age' ref={ ageRef } type='number' />
 
             <Button type='submit'>Add pet</Button>
          </form>
